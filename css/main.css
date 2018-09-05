@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.board{
+    height: 863px;
+    margin: auto;
+    width: 1024px;
+    position: relative;
+    background-image: url("../img/board.jpg");
+}
+.massageArea{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: green;
+}
+.fireInput{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.hit {
+    background-image: url("../img/ship.png");
+}
+
+.miss {
+    background-image: url("../img/miss.png");
+}
+
+.hit,
+.miss{
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
