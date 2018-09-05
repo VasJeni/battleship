@@ -26,15 +26,15 @@ var model = {
     fire : function(guess){
         for (var i =0; i<this.numShips; i++){
             var ship = this.ships[i];
-            var location = ship.location;
-            var index = location.indexOf(guess);
+            var index = ship.location.indexOf(guess);
             if (index>=0){
                 ship.hits[index] = "hit";
                 view.displayHit(guess);
-                view.displayMessage('HIT')
+                view.displayMessage('HIT');
                 if (this.isSunk(ship)){
                     view.displayMessage("you sank my battleship");
                     this.shipsSunk++;
+
                 }
                 return true;
             }
@@ -44,17 +44,19 @@ var model = {
         return false;
     },
     isSunk : function (ship) {
-        for (var i = 0; i<ship.length; i++){
+        for (var i = 0; i<ship.hits.length; i++){
             if (ship.hits[i] !== "hit"){
+                console.log("function iS sunk -> false");
                 return false;
             }
         }
+        console.log("function iS sunk -> true");
         return true;
     }
 };
-/*var controller = {
+var controller = {
     guess: 0,
-    progressGuess : function(guess){
+    processGuess : function(guess){
         var location = this.parseGuess(guess);
         if (location){
             this.guess++;
@@ -85,43 +87,7 @@ var model = {
         }
         return null;
     }
-};*/
-var controller = {
-    guesses: 0,
-
-    processGuess: function(guess) {
-        var location = parseGuess(guess);
-        if (location) {
-            this.guesses++;
-            var hit = model.fire(location);
-            if (hit && model.shipsSunk === model.numShips) {
-                view.displayMessage("You sank all my battleships, in " + this.guesses + " guesses");
-            }
-        }
-    }
 };
-
-function parseGuess(guess) {
-    var alphabet = ["A", "B", "C", "D", "E", "F", "G"];
-
-    if (guess === null || guess.length !== 2) {
-        alert("Oops, please enter a letter and a number on the board.");
-    } else {
-        var firstChar = guess.charAt(0);
-        var row = alphabet.indexOf(firstChar);
-        var column = guess.charAt(1);
-
-        if (isNaN(row) || isNaN(column)) {
-            alert("Oops, that isn't on the board.");
-        } else if (row < 0 || row >= model.boardSize ||
-            column < 0 || column >= model.boardSize) {
-            alert("Oops, that's off the board!");
-        } else {
-            return row + column;
-        }
-    }
-    return null;
-}
 
 
 // event handlers
@@ -155,3 +121,4 @@ function init() {
 }
 
 window.onload = init;
+
