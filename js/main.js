@@ -34,7 +34,6 @@ var model = {
                 if (this.isSunk(ship)){
                     view.displayMessage("you sank my battleship");
                     this.shipsSunk++;
-
                 }
                 return true;
             }
@@ -46,12 +45,31 @@ var model = {
     isSunk : function (ship) {
         for (var i = 0; i<ship.hits.length; i++){
             if (ship.hits[i] !== "hit"){
-                console.log("function iS sunk -> false");
+                //console.log("function iS sunk -> false");
                 return false;
             }
         }
-        console.log("function iS sunk -> true");
+        //console.log("function iS sunk -> true");
         return true;
+    },
+    generateShipLocation : function(){
+        var location;
+        for (var i = 0; i<this.numShips; i++){
+            do {
+                location = this.generateShip();
+            } while (this.collision(locayion));
+            this.ships[i].location = location;
+        }
+    },
+    generateShip : function(){
+        var directin = Math.floor(Math.random() *2 );
+        var row, col;
+
+        if (directin === 1){
+            //сгенерировать начальную позицию для горизонтального корабля
+        } else {
+            //сгенерировать начальную позици для вертикального корабля
+        }
     }
 };
 var controller = {
@@ -117,6 +135,8 @@ function handleKeyPress(e) {
 function init() {
     var firebutton = document.getElementById("fireButton");
     firebutton.onclick = handleFireButton;
+    var guessInput = document.getElementById("guessInput");
+    guessInput.onkeypress = handleKeyPress;
 
 }
 
