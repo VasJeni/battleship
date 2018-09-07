@@ -62,14 +62,24 @@ var model = {
         }
     },
     generateShip : function(){
-        var directin = Math.floor(Math.random() *2 );
+        var direction = Math.floor(Math.random() *2 );
         var row, col;
 
-        if (directin === 1){
+        if (direction === 1){
             //сгенерировать начальную позицию для горизонтального корабля
         } else {
             //сгенерировать начальную позици для вертикального корабля
         }
+        var newShipLocation = [];
+
+        for (var i = 0; i< this.shipLength.length; i++){
+            if (direction === 1){
+                //добавить масив для горизонтального корабля
+            } else {
+                //добавить масив для вертикального корабля
+            }
+        }
+        return newShipLocation;
     }
 };
 var controller = {
